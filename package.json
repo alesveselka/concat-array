@@ -1,0 +1,33 @@
+{
+    "author":"Ales Veselka",
+    "name": "concat-array",
+    "version": "0.1.0",
+    "description": "Concatenate content of array of files",
+    "main":"./src/js/index.js",
+    "bin":{
+        "concat-array":"./src/js/index.js"
+    },
+    "keywords": [
+        "concatenate",
+        "concat",
+        "array"
+    ],
+    "repository": {
+        "url": "git@github.com:alesveselka/concat-array.git",
+        "type": "git"
+    },
+    "engines": {
+        "node":"*"
+    },
+    "bugs": {
+        "url": "https://github.com/alesveselka/concat-array/issues"
+    },
+    "homepage": "https://github.com/alesveselka/concat-array",
+    "source":[
+        "fileA.js",
+        "fileB.js"
+    ],
+    "scripts":{
+        "concat":"concat-array -r src/resources/ -n package.json,source -o bundle.o"
+    }
+}
