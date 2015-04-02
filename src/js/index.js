@@ -31,6 +31,8 @@ function _onReadFileComplete(file,error,data)
 {
     if (error) {throw error;}
 
+    process.stdout.write((index / filesLength) * 100 + " %");
+
     if (data) fs.appendFile(output,data,_onAppendFileComplete.bind(this,file));
 }
 
@@ -45,7 +47,7 @@ function _onAppendFileComplete(file,error)
     if (error) {throw error;}
 
     if (index < filesLength) _readFile(root + fileNames[index++]);
-    //TODO OUT msg about completion? .. and progress
+    else process.stdout.write("Concatenate complete");
 }
 
 /**
