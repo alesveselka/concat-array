@@ -25,7 +25,8 @@
     "homepage": "https://github.com/alesveselka/concat-array",
     "source":[
         "fileA.js",
-        "fileB.js"
+        "fileB.js",
+        "fileC.js"
     ],
     "scripts":{
         "concat":"concat-array -r src/resources/ -n package.json,source -o bundle.o"
