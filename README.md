@@ -14,7 +14,7 @@ Usage
 -----
 
 ```bash
-$ concat-file-array -r src/js/ -package.json,source -o output.js
+concat-file-array -r src/js/ -package.json,source -o output.js
 ```
 
 Available options:
