@@ -59,7 +59,7 @@ function _printProgress(progress)
         out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
     }
 
-    if (progress === 100) out.write("\nConcat complete, output file: "+output);
+    if (progress === 100) process.stdout.write("\nConcat complete, output file: "+output);
 }
 
 /**
