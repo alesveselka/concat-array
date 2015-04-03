@@ -1,20 +1,30 @@
-## concat file array
+Concat file array
+=================
 
-Concatenate content of array of files
+### CLI utility for concatenating content of array of files
 
-A) concat-array -n package.source -o result.js // use name of JSON file and field-name containing array of files
-B) concat-array -r src/resources/ -f file1.txt,file2.txt -o result.js // list array as comma-separated list
-
-```js
-var concat = require('concat')
-
-concat(['a.css', 'b.css', 'c.css'], 'all.css', function (error) {
-  // done
-})
-```
-
-## Install
+Install
+-------
 
 ```bash
-$ npm install concat-array
+$ npm install concat-file-array --save-dev
+```
+
+Usage
+-----
+
+```bash
+$ concat-file-array -r src/js/ -package.json,source -o output.js
+```
+
+Available options:
+```
+    -r, --root          Root directory of source files. If you don't want to specify
+                        directory in each of the concatenated files, specify root that
+                        will be prepended to each file name.
+    -f, --files         Comma-separated list of files to concatenate.
+    -n, --name          Name of JSON file containing array of files to concatenate,
+                        and comma-separated JSON-field-name holding the array.
+    -o, --output        Name of file where resulting concatenated content will be
+                        written into.
 ```
