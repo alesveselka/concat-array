@@ -35,7 +35,7 @@ function _onReadFileComplete(file,error,data)
 
     if (displayProgress) _printProgress((index-1)/filesLength);
 
-    if (data) fs.appendFile(output,data,_onAppendFileComplete.bind(this,file));
+    fs.appendFile(output,data,_onAppendFileComplete.bind(this,file));
 }
 
 /**
@@ -47,19 +47,16 @@ function _printProgress(progress)
 {
     progress = parseInt((progress >= 1.0 ? 1.0 : progress) * 100);
 
-    if (displayProgress)
-    {
-        var out = process.stdout,
-            dots = "..........",
-            spaces = "          ",
-            dotLength = Math.floor(progress / 10);
+    var out = process.stdout,
+        dots = "..........",
+        spaces = "          ",
+        dotLength = Math.floor(progress / 10);
 
-        out.clearLine();
-        out.cursorTo(0);
-        out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
-    }
+    out.clearLine();
+    out.cursorTo(0);
+    out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
 
-    if (progress === 100) process.stdout.write("\nConcat complete, output file: "+output);
+    if (progress === 100) out.write("\nConcat complete, output file: "+output);
 }
 
 /**
@@ -73,7 +70,7 @@ function _onAppendFileComplete(file,error)
     if (error) {throw error;}
 
     if (index < filesLength) _readFile(root + fileNames[index++]);
-    else _printProgress(1);
+    else if (displayProgress) _printProgress(1);
 }
 
 /**
