@@ -27,6 +27,7 @@ Available options:
                         and comma-separated JSON-field-name holding the array.
     -o, --output        Name of file where resulting concatenated content will be
                         written into.
+    -p, --progress      Display concatenation progress.
 ```
 Examples
 --------
@@ -74,4 +75,9 @@ concat-file-array -r js/src/ -f fileA.js,fileB.js
 Without specifying output file, ```output.txt``` will be generated and concatenated result will be written into it. Optionally you can specify output file in option ```--output``` or shortcut ```-o```
 ```bash
 concat-file-array -r js/src/ -n package.json,source -o public/js/output.js
+```
+
+If you want to print status and progress to command line, add ```--progress``` (```-p```) option.
+```bash
+concat-file-array -r js/src/ -n package.json,source -o public/js/output.js -p
 ```

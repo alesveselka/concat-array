@@ -4,6 +4,8 @@ var fs = require("fs"),
     args = process.argv,
     nameIndex = args.indexOf('-n') > args.indexOf('--name') ? args.indexOf('-n') : args.indexOf('--name'),
     filesIndex = args.indexOf('-f') > args.indexOf('--files') ? args.indexOf('-f') : args.indexOf('--files'),
+    progressIndex = args.indexOf('-p') > args.indexOf('--progress') ? args.indexOf('-p') : args.indexOf('--progress'),
+    displayProgress = progressIndex > -1,
     output = null,
     root = null,
     index = 0,
@@ -31,7 +33,7 @@ function _onReadFileComplete(file,error,data)
 {
     if (error) {throw error;}
 
-    _printProgress((index-1)/filesLength);
+    if (displayProgress) _printProgress((index-1)/filesLength);
 
     if (data) fs.appendFile(output,data,_onAppendFileComplete.bind(this,file));
 }
@@ -45,14 +47,17 @@ function _printProgress(progress)
 {
     progress = parseInt((progress >= 1.0 ? 1.0 : progress) * 100);
 
-    var out = process.stdout,
-        dots = "..........",
-        spaces = "          ",
-        dotLength = Math.floor(progress / 10);
+    if (displayProgress)
+    {
+        var out = process.stdout,
+            dots = "..........",
+            spaces = "          ",
+            dotLength = Math.floor(progress / 10);
 
-    out.clearLine();
-    out.cursorTo(0);
-    out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
+        out.clearLine();
+        out.cursorTo(0);
+        out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
+    }
 
     if (progress === 100) out.write("\nConcat complete, output file: "+output);
 }
@@ -113,7 +118,7 @@ function _concat()
     // If file names exist, start concat
     if (fileNames && fileNames.length)
     {
-        process.stdout.write("Concatenating array of files ...\r");
+        if (displayProgress) process.stdout.write("Concatenating array of files ...\r");
 
         var rootIndex = args.indexOf('-r') > args.indexOf('--root') ? args.indexOf('-r') : args.indexOf('--root'),
             outputIndex = args.indexOf('-o') > args.indexOf('--output') ? args.indexOf('-o') : args.indexOf('--output');
