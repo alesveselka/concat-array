@@ -54,7 +54,7 @@ function _printProgress(progress)
     out.cursorTo(0);
     out.write("Progress: "+dots.substr(0,dotLength)+spaces.substr(0,10-dotLength)+" "+progress + "%");
 
-    if (progress === 100) out.write("\nConcat complete, output file: "+root+output);
+    if (progress === 100) out.write("\nConcat complete, output file: "+output);
 }
 
 /**
@@ -113,7 +113,7 @@ function _concat()
     // If file names exist, start concat
     if (fileNames && fileNames.length)
     {
-        process.stdout.write("Concatenating array of files started.\r");
+        process.stdout.write("Concatenating array of files ...\r");
 
         var rootIndex = args.indexOf('-r') > args.indexOf('--root') ? args.indexOf('-r') : args.indexOf('--root'),
             outputIndex = args.indexOf('-o') > args.indexOf('--output') ? args.indexOf('-o') : args.indexOf('--output');
