@@ -13,29 +13,19 @@ var fs = require("fs"),
     fileNames = null;
 
 /**
- * Read file by name passed in
- * @param {string} fileName
- * @private
- */
-function _readFile(fileName)
-{
-    fs.readFile(fileName,_onReadFileComplete.bind(this,fileName));
-}
-
-/**
  * Read file complete handler
- * @param {string} file
+ * @param {number} index
  * @param {Error} error
  * @param {Buffer} data
  * @private
  */
-function _onReadFileComplete(file,error,data)
+function _onReadFileComplete(error,data)
 {
     if (error) {throw error;}
 
-    if (displayProgress) _printProgress((index-1)/filesLength);
+    if (displayProgress) _printProgress(++index/filesLength);
 
-    fs.appendFile(output,data,_onAppendFileComplete.bind(this,file));
+    fs.appendFile(output,data);
 }
 
 /**
@@ -60,20 +50,6 @@ function _printProgress(progress)
 }
 
 /**
- * Append file complete handler
- * @param {string} file
- * @param {Error} error
- * @private
- */
-function _onAppendFileComplete(file,error)
-{
-    if (error) {throw error;}
-
-    if (index < filesLength) _readFile(root + fileNames[index++]);
-    else if (displayProgress) _printProgress(1);
-}
-
-/**
  * File write complete handler
  * @param {Error} error
  * @private
@@ -82,7 +58,7 @@ function _onFileWriteComplete(error)
 {
     if (error) {throw error;}
 
-    _readFile(root + fileNames[index++]);
+    for (var i=0;i<filesLength;) fs.readFile(root + fileNames[i++],_onReadFileComplete);
 }
 
 /**

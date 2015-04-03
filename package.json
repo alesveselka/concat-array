@@ -1,7 +1,7 @@
 {
     "author":"Ales Veselka",
     "name": "concat-file-array",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Concatenate content of array of files",
     "main":"./src/js/index.js",
     "bin":{
