@@ -1,7 +1,7 @@
 Concat file array
 =================
 
-CLI utility for concatenating content of array of files
+CLI wrapper around 'concat' module that allows read files from external file
 
 Install
 -------
@@ -19,15 +19,15 @@ concat-file-array -r src/js/ -package.json,source -o output.js
 
 Available options:
 ```
-    -r, --root          Root directory of source files. If you don't want to specify
-                        directory in each of the concatenated files, specify root that
-                        will be prepended to each file name.
+    -r, --root          Root directory of source files. If you don't want to
+                        specify directory in each of the concatenated files,
+                        specify root that will be prepended to each file name.
     -f, --files         Comma-separated list of files to concatenate.
-    -n, --name          Name of JSON file containing array of files to concatenate,
-                        and comma-separated JSON-field-name holding the array.
-    -o, --output        Name of file where resulting concatenated content will be
-                        written into.
-    -p, --progress      Display concatenation progress.
+    -n, --name          Name of JSON file containing array of files to
+                        concatenate, and comma-separated JSON-field-name
+                        holding the array.
+    -o, --output        Name of file where resulting concatenated content
+                        will be written into.
 ```
 Examples
 --------
@@ -75,9 +75,4 @@ concat-file-array -r js/src/ -f fileA.js,fileB.js
 Without specifying output file, ```output.txt``` will be generated and concatenated result will be written into it. Optionally you can specify output file in option ```--output``` or shortcut ```-o```
 ```bash
 concat-file-array -r js/src/ -n package.json,source -o public/js/output.js
-```
-
-If you want to print status and progress to command line, add ```--progress``` (```-p```) option.
-```bash
-concat-file-array -r js/src/ -n package.json,source -o public/js/output.js -p
 ```
