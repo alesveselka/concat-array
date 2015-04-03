@@ -15,14 +15,14 @@
         "cli"
     ],
     "repository": {
-        "url": "https://github.com/alesveselka/concat-array.git",
+        "url": "https://github.com/alesveselka/concat-file-array.git",
         "type": "git"
     },
     "engines": {
         "node":"*"
     },
     "bugs": {
-        "url": "https://github.com/alesveselka/concat-array/issues"
+        "url": "https://github.com/alesveselka/concat-file-array/issues"
     },
-    "homepage": "https://github.com/alesveselka/concat-array"
+    "homepage": "https://github.com/alesveselka/concat-file-array"
 }
