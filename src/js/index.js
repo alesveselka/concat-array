@@ -12,20 +12,17 @@ var fs = require("fs"),
     root = null;
 
 // Resolve file names either from 'files' argument passed in ...
-if (filesIndex > -1)
-{
+if (filesIndex > -1) {
     fileNames = args[filesIndex+1].split(",");
 }
 // ... or from 'name' argument
-else if (nameIndex > -1)
-{
+else if (nameIndex > -1) {
     var names = args[nameIndex+1].split(",");
     fileNames = require(require("path").resolve(names[0]))[names[1]];
 }
 
 // If file names exist, start concat
-if (fileNames && fileNames.length)
-{
+if (fileNames && fileNames.length) {
     var rootIndex = args.indexOf('-r') > args.indexOf('--root') ? args.indexOf('-r') : args.indexOf('--root'),
         outputIndex = args.indexOf('-o') > args.indexOf('--output') ? args.indexOf('-o') : args.indexOf('--output');
 
@@ -51,8 +48,6 @@ if (fileNames && fileNames.length)
 
         process.exit(0);
     });
-}
-else
-{
+} else {
     throw Error("Couldn't resolve name of files to concatenate.");
 }
